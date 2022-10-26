@@ -46,6 +46,15 @@ var questionSource = [
     },
 ]
 
+//start quiz
+function quizStart () {
+    introPage.style.display = "none";
+    questionPage.style.display = "block";
+    questionNumber = 0
+    countDown();
+    startQuestion(questionNumber);
+}
+
 //quiz page set up
 function startQuestion (i) {
     actualProblem.textContent = questionSource[i].question;
@@ -53,6 +62,7 @@ function startQuestion (i) {
     answerBtn2.textContent = questionSource[i].choices[1];
     answerBtn3.textContent = questionSource[i].choices[2];
     answerBtn4.textContent = questionSource[i].choices[3];
+    questionNumber = i;
 };
 
 var timeLeft = document.getElementById("timer");
