@@ -46,15 +46,6 @@ var questionSource = [
     },
 ]
 
-//start quiz
-function quizStart () {
-    introPage.style.display = "none";
-    questionPage.style.display = "block";
-    questionNumber = 0
-    countDown();
-    startQuestion(questionNumber);
-}
-
 //quiz page set up
 function startQuestion (i) {
     actualProblem.textContent = questionSource[i].question;
@@ -85,3 +76,13 @@ function countDown () {
     }, 1000);
 };
 
+//start quiz
+function quizStart () {
+    introPage.style.display = "none";
+    questionPage.style.display = "block";
+    questionNumber = 0
+    countDown();
+    startQuestion(questionNumber);
+};
+
+startBtn.addEventListener("click", quizStart);
