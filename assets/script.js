@@ -17,6 +17,7 @@ var scoreCheck = document.querySelector("#scoreCheck");
 var finish = document.querySelector("#finish");
 var backBtn = document.querySelector("#backBtn");
 var clearBtn = document.querySelector("#clearBtn");
+var checkAnswer = document.querySelector("#checkAnswer");
 
 var questionSource = [
     {
@@ -59,6 +60,7 @@ function startQuestion (i) {
 var timeLeft = document.getElementById("timer");
 var secondLeft = 50;
 var questionCount = 1;
+var totalScore = 0;
 
 function countDown () {
     var timerInterval = setInterval(function(){
@@ -86,3 +88,33 @@ function quizStart () {
 };
 
 startBtn.addEventListener("click", quizStart);
+
+//end game
+function gameOver () {
+    questionPage.style.display = "none";
+    resultScore.style.display = "block";
+    finalScore.textContent = "Your final score is :" + totalScore;
+    timeLeft.style.display = "none";
+};
+
+//answer check
+function finalAnswer (event) {
+    event.preventDefault();
+    checkAnswer.style.display = "block";
+    setTimeout(function () {
+        checkAnswer.style.display = "none";
+    }, 1000);
+    if (questionSource[questionNumber].answer === event.target.value) {
+        checkAnswer.textContent = "Correct!!!";
+        totalScore = totalScore++;
+    } else {
+        secondLeft = secondLeft - 10;
+        checkAnswer.textContent = "Wrong!";
+    }
+
+    if (questionNumber < questionSource.length -1) {
+        startQuestion(questionNumber+1);
+    } else {
+        gameOver();
+    }
+}
