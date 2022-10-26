@@ -117,4 +117,9 @@ function finalAnswer (event) {
     } else {
         gameOver();
     }
-}
+};
+
+//answer check
+clickBtn.forEach(function(click){
+    click.addEventListener("click", finalAnswer);
+});
