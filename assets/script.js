@@ -117,6 +117,7 @@ function finalAnswer (event) {
     } else {
         gameOver();
     }
+    questionCount++;
 };
 
 //answer check
