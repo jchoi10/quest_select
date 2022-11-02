@@ -88,6 +88,8 @@ function countDown () {
 function quizStart () {
     introPage.style.display = "none";
     questionPage.style.display = "block";
+    highscorePage.style.display="none";
+    resultPage.style.display="none";
     questionNumber = 0
     countDown();
     startQuestion(questionNumber);
@@ -166,7 +168,7 @@ function ranking() {
     if (scoreResult == null) {
         return;
     } else {
-        noneRankingList.sort(function(a,b) {
+        noneRankingList.sort(function(a, b) {
             return b.score - a.score;
         });
         return noneRankingList;
@@ -174,7 +176,19 @@ function ranking() {
 };
 
 //display scoreboard
-
+function displayScore () {
+    recordScore.innerHTML = "";
+    recordScore.style.display = "block";
+    var highScore = ranking();
+    var topThree = highScore.slice(0,3);
+    for (var i=0; i< topThree.length; i++) {
+        var list = topThree[i];
+        var lists = document.createElement("li");
+        lists.textContent = list.user + "-" + list.score;
+        lists.setAttribute("scoreRanking", i);
+        recordScore.appendChild(lists);
+    }
+};
 
 //high score check
 scoreCheck.addEventListener("click",function(event){
@@ -183,6 +197,7 @@ scoreCheck.addEventListener("click",function(event){
     highscorePage.style.display="block";
     questionPage.style.display="none";
     resultPage.style.display="none";
+    displayScore();
 });
 
 //submit score button
@@ -207,5 +222,7 @@ backBtn.addEventListener("click", function(event){
 
 //clear score
 clearBtn.addEventListener("click",function(event){
-
-})
+    event.preventDefault();
+    localStorage.clear();
+    displayScore();
+});

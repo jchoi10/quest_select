@@ -11,3 +11,4 @@
 
 - styling of the web application needed.
 - localstorage save is not properly done.
+- score ranking not working properly.
