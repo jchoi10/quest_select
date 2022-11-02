@@ -158,7 +158,23 @@ function addScore() {
         score: totalScore
     }
     saveScore(scoreProp);
-}
+};
+
+//score ranking
+function ranking() {
+    var noneRankingList = scoreResult();
+    if (scoreResult == null) {
+        return;
+    } else {
+        noneRankingList.sort(function(a,b) {
+            return b.score - a.score;
+        });
+        return noneRankingList;
+    };
+};
+
+//display scoreboard
+
 
 //high score check
 scoreCheck.addEventListener("click",function(event){
@@ -188,3 +204,8 @@ backBtn.addEventListener("click", function(event){
     resultPage.style.display="none";
     location.reload();
 });
+
+//clear score
+clearBtn.addEventListener("click",function(event){
+
+})
