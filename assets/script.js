@@ -15,7 +15,7 @@ var finalScore = document.querySelector("#finalScore");
 var userInitial = document.querySelector("#initial");
 
 var submitBtn = document.querySelector("#submitBtn");
-var highscorePage = document.querySelector("#hightscorePage");
+var highscorePage = document.querySelector("#highscorePage");
 var recordScore = document.querySelector("#recordScore");
 var scoreCheck = document.querySelector("#scoreCheck");
 var finish = document.querySelector("#finish");
@@ -135,8 +135,15 @@ clickBtn.forEach(function(click){
 
 //score result 
 function scoreResult() {
-    var latestResult = localStorage.getItem("PastScore")
-}
+    var latestResult = localStorage.getItem("PastScore");
+    if (latestResult !== null){
+        newList = JSON.parse(latestResult);
+        return newList;
+    } else {
+        newList=[];
+    }
+    return newList;
+};
 
 //save score and intial
 function saveScore(i) {
@@ -144,3 +151,23 @@ function saveScore(i) {
     saveResult.push(i);
     localStorage.setItem("PastScore", JSON.stringify(saveResult));
 };
+
+//submit score button
+submitBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    homepage.style.display="none";
+    highscorePage.style.display="block";
+    questionPage.style.display="none";
+    resultPage.style.display="none";
+    saveScore();
+});
+
+//goback button
+backBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    homepage.style.display="block";
+    highscorePage.style.display="none";
+    questionPage.style.display="none";
+    resultPage.style.display="none";
+    location.reload();
+});
