@@ -12,7 +12,7 @@ var answerBtn4 = document.querySelector("#answerBtn4");
 
 var resultScore = document.querySelector("#resultPage");
 var finalScore = document.querySelector("#finalScore");
-var userInitial = document.querySelector("#initial");
+var userInitial = document.querySelector(".initial");
 
 var submitBtn = document.querySelector("#submitBtn");
 var highscorePage = document.querySelector("#highscorePage");
@@ -152,6 +152,23 @@ function saveScore(i) {
     localStorage.setItem("PastScore", JSON.stringify(saveResult));
 };
 
+function addScore() {
+    var scoreProp = {
+        user: userInitial.value,
+        score: totalScore
+    }
+    saveScore(scoreProp);
+}
+
+//high score check
+scoreCheck.addEventListener("click",function(event){
+    event.preventDefault();
+    homepage.style.display="none";
+    highscorePage.style.display="block";
+    questionPage.style.display="none";
+    resultPage.style.display="none";
+});
+
 //submit score button
 submitBtn.addEventListener("click", function(event){
     event.preventDefault();
@@ -159,7 +176,7 @@ submitBtn.addEventListener("click", function(event){
     highscorePage.style.display="block";
     questionPage.style.display="none";
     resultPage.style.display="none";
-    saveScore();
+    addScore();
 });
 
 //goback button

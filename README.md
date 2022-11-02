@@ -9,6 +9,5 @@
 
 # Area of improvemnet
 
-- answer check is still not responding correctly.
 - styling of the web application needed.
-- webpage shown all at one -> need to add eventlisteners to change its status.
+- localstorage save is not properly done.
