@@ -1,15 +1,19 @@
 var startBtn = document.querySelector("#startBtn");
 var introPage = document.querySelector("#homepage");
+
 var questionPage = document.querySelector("#questionPage");
 var actualProblem = document.querySelector("#actualProblem");
-var clickBtn = document.querySelector(".choices");
+
+var clickBtn = document.querySelectorAll(".choices");
 var answerBtn1 = document.querySelector("#answerBtn1");
 var answerBtn2 = document.querySelector("#answerBtn2");
 var answerBtn3 = document.querySelector("#answerBtn3");
 var answerBtn4 = document.querySelector("#answerBtn4");
+
 var resultScore = document.querySelector("#resultPage");
 var finalScore = document.querySelector("#FinalScore");
 var userInitial = document.querySelector("#initial");
+
 var submitBtn = document.querySelector("#submitBtn");
 var highscorePage = document.querySelector("#hightscorePage");
 var recordScore = document.querySelector("#recordScore");
@@ -46,6 +50,8 @@ var questionSource = [
         answer: "c"
     },
 ]
+
+var questionNumber = 0;
 
 //quiz page set up
 function startQuestion (i) {
@@ -104,7 +110,7 @@ function finalAnswer (event) {
     setTimeout(function () {
         checkAnswer.style.display = "none";
     }, 1000);
-    if (questionSource[questionNumber].answer === event.target.value) {
+    if (questionSource[questionNumber].answer == event.target.value) {
         checkAnswer.textContent = "Correct!!!";
         totalScore = totalScore++;
     } else {
@@ -113,11 +119,12 @@ function finalAnswer (event) {
     }
 
     if (questionNumber < questionSource.length -1) {
-        startQuestion(questionNumber+1);
+        startQuestion(questionNumber +1);
     } else {
         gameOver();
     }
     questionCount++;
+    console.log(questionCount)
 };
 
 //answer check
