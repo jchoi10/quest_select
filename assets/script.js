@@ -11,7 +11,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 var answerBtn4 = document.querySelector("#answerBtn4");
 
 var resultScore = document.querySelector("#resultPage");
-var finalScore = document.querySelector("#FinalScore");
+var finalScore = document.querySelector("#finalScore");
 var userInitial = document.querySelector("#initial");
 
 var submitBtn = document.querySelector("#submitBtn");
@@ -95,14 +95,6 @@ function quizStart () {
 
 startBtn.addEventListener("click", quizStart);
 
-//end game
-function gameOver () {
-    questionPage.style.display = "none";
-    resultScore.style.display = "block";
-    finalScore.textContent = "Your final score is :" + totalScore;
-    timeLeft.style.display = "none";
-};
-
 //answer check
 function finalAnswer (event) {
     event.preventDefault();
@@ -127,8 +119,28 @@ function finalAnswer (event) {
     console.log(questionCount)
 };
 
+//end game
+function gameOver () {
+    questionPage.style.display = "none";
+    resultScore.style.display = "block";
+    console.log(resultScore)
+    finalScore.textContent = "Your final score is :" + totalScore;
+    timeLeft.style.display = "none";
+};
+
 //answer check
 clickBtn.forEach(function(click){
     click.addEventListener("click", finalAnswer);
 });
 
+//score result 
+function scoreResult() {
+    var latestResult = localStorage.getItem("PastScore")
+}
+
+//save score and intial
+function saveScore(i) {
+    var saveResult = scoreResult();
+    saveResult.push(i);
+    localStorage.setItem("PastScore", JSON.stringify(saveResult));
+};
