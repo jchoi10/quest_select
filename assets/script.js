@@ -131,3 +131,4 @@ function finalAnswer (event) {
 clickBtn.forEach(function(click){
     click.addEventListener("click", finalAnswer);
 });
+
